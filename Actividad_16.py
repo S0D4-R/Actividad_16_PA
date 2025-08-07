@@ -6,7 +6,7 @@ class Book:
         self.author = author
         self.year = year
     def book_display(self):
-        print(f"Libro: {self.name}|Autor: {self.author}|Año de publicación: {self.year}")
+        print(f"\nLibro: {self.name}|Autor: {self.author}|Año de publicación: {self.year}")
 
 
 def add_book(compendium):
@@ -36,13 +36,28 @@ while key:
             case "1":
                 add_book(books_compendium)
             case "2":
-                pass
+                if not books_compendium:
+                    print("No hay libros...")
+                else:
+                    counter = 0
+                    for book in books_compendium:
+                        counter += 1
+                        print(f"{counter}]", end="")
+                        book.book_display()
             case "3":
-                pass
+                if not books_compendium:
+                    print("No hay libros en el archivo...")
+                else:
+                    locked_book = input("Coloque el nombre del libro que quiere eliminar: ")
+                    for book in books_compendium:
+                        if book.name.lower() == locked_book.lower():
+                            books_compendium.remove(book)
+                            break
+
             case "4":
                 key = False
+                print("Gracias por usar el programa")
     except Exception as e:
         print(f"Error inesperado: {e}")
 
-    finally:
-        print("Gracias por usar el prgrama")
+
